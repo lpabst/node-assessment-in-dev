@@ -29,13 +29,14 @@ module.exports = {
             for (var i in userData){
                 if (userData[i].email == q.email){
                     results.push(userData[i]);
+                    return res.status(200).send(results[0]);
                 }
             }
         }else{
             results = userData.slice();
         }
 
-        return res.status(200).json(results);
+        return res.status(200).send(results);
     },
 
 
@@ -63,8 +64,13 @@ module.exports = {
 
 
     getListOfNonAdmins: function(req, res, next){
-
-        return res.status(200).json(userData);
+        let results = [];
+        for (var i in userData){
+            if (userData[i].type != 'admin'){
+                results.push(userData[i]);
+            }
+        }
+        return res.status(200).json(results);
     },
 
 
