@@ -87,7 +87,12 @@ module.exports = {
 
 
     updateUserById: function(req, res, next){
-
+        let id = req.params.id;
+        for (var i in userData){
+            if (userData[i].id == id){
+                userData[i] = req.body;
+            }
+        }
         return res.status(200).json(userData);
     },
 
