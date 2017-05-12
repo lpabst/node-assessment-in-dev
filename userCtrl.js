@@ -98,14 +98,22 @@ module.exports = {
 
 
     addUser: function(req, res, next){
-
+        let id = userData.length + 1;
+        req.body.id = id;
+        userData.push(req.body);
         return res.status(200).json(userData);
     },
 
 
     deleteUserById: function(req, res, next){
-
-        return res.status(200).json(userData);
+        let id = req.params.id;
+        for (var i in userData){
+            if (userData[i].id == id){
+                userData.splice(i, 1);
+                return res.status(200).json(userData);
+            }
+        }
+        
     },
 
 
