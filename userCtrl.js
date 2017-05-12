@@ -75,8 +75,14 @@ module.exports = {
 
 
     getUsersByType: function(req, res, next){
-
-        return res.status(200).json(userData);
+        let type = req.params.type;
+        let results = [];
+        for (var i in userData){
+            if (userData[i].type == type){
+                results.push(userData[i]);
+            }
+        }
+        return res.status(200).json(results);
     },
 
 
