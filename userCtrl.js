@@ -40,8 +40,14 @@ module.exports = {
 
 
     getUserById: function(req, res, next){
-
-        return res.status(200).json(userData);        
+        let id = req.params.id;
+        for (var i in userData){
+            if (userData[i].id == id){
+                return res.status(200).json(userData[i]); 
+             }
+        }
+        
+        return res.status(404).json(null); 
     },
 
 
@@ -79,7 +85,7 @@ module.exports = {
 
         return res.status(200).json(userData);
     },
-    
+
 
 }
 
