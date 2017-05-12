@@ -52,8 +52,13 @@ module.exports = {
 
 
     getListOfAdmins: function(req, res, next){
-
-        return res.status(200).json(userData);
+        let results = [];
+        for (var i in userData){
+            if (userData[i].type == 'admin'){
+                results.push(userData[i]);
+            }
+        }
+        return res.status(200).json(results);
     },
 
 
